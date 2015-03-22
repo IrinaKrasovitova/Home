@@ -15,7 +15,7 @@
 #include "aes.h"
 #include "gost.h"
 
-#define BUFFER_SIZE 65536
+#define BUFFER_SIZE 1024
 #define SALT_LEN 32
 
 using namespace std;
@@ -30,7 +30,8 @@ class cryptoWorker {
 	int type_of_shifr;
 	int mode_of_shifr;
 	int hash_function;
-	int k;
+	int keyk;
+	int ivk;
 	FILE *in;
 	ifstream inStream;
 	FILE *out;
