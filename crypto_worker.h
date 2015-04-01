@@ -5,19 +5,6 @@
 #include "iostream"
 #include "fstream"
 
-#include "dll.h"
-#include "pwdbased.h"
-#include "md5.h"
-#include "sha.h"
-#include "cryptlib.h"
-#include "modes.h"
-#include "filters.h"
-#include "aes.h"
-#include "gost.h"
-
-#define BUFFER_SIZE 1024
-#define SALT_LEN 32
-
 using namespace std;
 
 class cryptoWorker {
@@ -32,9 +19,7 @@ class cryptoWorker {
 	int hash_function;
 	int keyk;
 	int ivk;
-	FILE *in;
 	ifstream inStream;
-	FILE *out;
 	ofstream outStream;
 	byte key[32];
 	byte IV[32];
@@ -55,7 +40,11 @@ public:
 	int prepareFileContexts();
 	void initializeCryptoModule();
 	void encrypt();
-	void dectypt();
+	void encryptAES();
+	void encryptGOST();
+	void decrypt();
+	void decryptAES();
+	void decryptGOST();
 	void doCrypto();
 	int closeFileContexts();
 };
